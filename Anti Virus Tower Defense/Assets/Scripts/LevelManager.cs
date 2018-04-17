@@ -102,7 +102,7 @@ public class LevelManager : MonoBehaviour {
                 newTile.Setup(new Point(x, y), position, false);
                 break;
             default:
-                Debug.LogError("UNKNOWN TILE TYPE: " + tileType.ToString());
+                newTile.Setup(new Point(x, y), position, false);
                 break;
         }
         Tiles.Add(new Point(x, y), newTile);

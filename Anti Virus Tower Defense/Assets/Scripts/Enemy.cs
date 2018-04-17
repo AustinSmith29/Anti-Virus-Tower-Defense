@@ -14,15 +14,16 @@ public class Enemy : MonoBehaviour {
         gameObject.GetComponent<BoxCollider2D>().transform.position = gameObject.transform.position;
         if (health <= 0)
         {
+            GameState.score += 100;
+            GameState.currency += 25;
+            GameObject.Find("EnemyManager").GetComponent<EnemyManager>().destroyEnemy();
             Destroy(gameObject);
         }
 	}
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            print("HELLO");
             this.health -= collision.gameObject.GetComponent<BasicBullet>().damage;
             Destroy(collision.gameObject);
         }

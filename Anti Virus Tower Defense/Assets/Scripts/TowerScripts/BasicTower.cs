@@ -7,17 +7,20 @@ public class BasicTower : MonoBehaviour {
 
     public float fireRadius = 2.0f;
     public float fireRate = 1.0f;
+    public int cost = 50;
     public bool selected = false;
     public Object projectile;
     private Vector2 position;
     private GameObject target = null;
     private float fireTimer;
     private bool canFire;
+
 	// Use this for initialization
 	void Start () {
         gameObject.GetComponent<CircleCollider2D>().radius = fireRadius;
         fireTimer = 0.0f;
         canFire = true;
+        
 	}
 
     public void Init(Vector2 position)

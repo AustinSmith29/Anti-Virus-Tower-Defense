@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212133795005087178}
   - component: {fileID: 58092505293550900}
   - component: {fileID: 114646759989934914}
-  - component: {fileID: 50992009446960416}
   m_Layer: 2
   m_Name: dummyBullet
   m_TagString: Bullet
@@ -43,26 +42,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50992009446960416
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1972560102212280}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!58 &58092505293550900
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -89,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b93e71723c0cf42a131880c8792569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   damage: 25
 --- !u!212 &212133795005087178
 SpriteRenderer:

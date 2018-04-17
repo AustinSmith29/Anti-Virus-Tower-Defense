@@ -2,15 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour {
 
-    public List<Object> enemyPrefabs;  // The available towers to be placed.
+    public List<GameObject> towerPrefabs;  // The available towers to be placed.
     public int selectedTower = 0;
+    public Button basicTowerButton;
+    public Button powerTowerButton;
+    public Button scatterTowerButton;
     // Use this for initialization
     void Start () {
-		
-	}
+        Button btn_basic = basicTowerButton.GetComponent<Button>();
+        btn_basic.onClick.AddListener(selectBasic);
+
+        Button btn_power = powerTowerButton.GetComponent<Button>();
+        btn_power.onClick.AddListener(selectPower);
+
+        Button btn_scatter = scatterTowerButton.GetComponent<Button>();
+        btn_scatter.onClick.AddListener(selectScatter);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,11 +33,13 @@ public class TowerManager : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero, 12, layerMask);
             if (hit)
             { 
-                if (hit.collider.gameObject.tag != "Tower" && hit.collider.gameObject.GetComponent<TileScript>().canPlaceTower)
+                if (hit.collider.gameObject.tag != "Tower" && hit.collider.gameObject.GetComponent<TileScript>().canPlaceTower
+                    && GameState.currency >= towerPrefabs[selectedTower].GetComponent<BasicTower>().cost)
                 {
-                    Vector3 tilePosition = hit.collider.transform.position;
+                    Vector3 tilePosition = new Vector3(hit.collider.transform.position.x + .32f, hit.collider.transform.position.y -.32f, 0);
                     hit.collider.gameObject.GetComponent<TileScript>().canPlaceTower = false;
-                    placeTower(enemyPrefabs[selectedTower], tilePosition);
+                    placeTower(towerPrefabs[selectedTower], tilePosition);
+                    GameState.currency -= towerPrefabs[selectedTower].GetComponent<BasicTower>().cost;
                 }
                 else
                 {
@@ -42,5 +55,20 @@ public class TowerManager : MonoBehaviour {
         var tower = PrefabUtility.InstantiatePrefab(towerPrefab) as GameObject;
         tower.GetComponent<BasicTower>().Init(position);
         tower.layer = 1;
+    }
+
+    void selectBasic()
+    {
+        selectedTower = 0;
+    }
+
+    void selectPower()
+    {
+        selectedTower = 1;
+    }
+
+    void selectScatter()
+    {
+        selectedTower = 2;
     }
 }

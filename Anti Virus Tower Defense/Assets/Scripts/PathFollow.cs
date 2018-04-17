@@ -29,7 +29,7 @@ public class PathFollow : MonoBehaviour {
         }
         else
         {
-            GameState.towerHealth -= 5;
+            GameState.towerLives -= 1;
             GameObject.Find("EnemyManager").GetComponent<EnemyManager>().destroyEnemy();
             Destroy(gameObject);
         }

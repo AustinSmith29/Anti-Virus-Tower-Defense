@@ -125,6 +125,15 @@ public class EnemyManager : MonoBehaviour {
         enemiesRemaining = waves[currentWaveIndex].totalEnemies;
     }
 
+   public bool isOutOfWaves()
+    {
+        if (currentWaveIndex >= waves.Count)
+        {
+            return true;
+        }
+        return false;
+    }
+
     /*
      * Creates the given enemy at the given spawnPoint.
      */
