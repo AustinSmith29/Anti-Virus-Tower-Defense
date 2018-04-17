@@ -20,8 +20,6 @@ public class BasicBullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print(direction);
         transform.position += direction * speed * Time.deltaTime;
-   
 	}
 }
